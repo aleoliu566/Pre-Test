@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<script type="text/javascript">
+  // 1. Fibonacci
+  function fibonacci(n){
+    let ans = 0;
+    let first = 0;
+    let second = 1;
+    if(n===1) return first;
+    if(n===2) return second;
+
+    for(let i = 3 ; i <= n; i++){
+      ans = first + second;
+      first = second;
+      second = ans;
+    }
+    return ans;
+  };
+  fibonacci(3); // 1
+  fibonacci(5); // 3
+
+
+  // 2. debounce
+  function debounce(func, delay) {
+    let timeout = null;
+   
+    return () => {
+      let context = this;
+      let args = arguments;
+   
+      clearTimeout(timeout);
+      timeout = setTimeout(() => {
+        func.apply(context, args);
+      }, delay)
+    }
+  }
+  function handleClick() {
+    console.log("click!");
+  }
+  window.addEventListener('click', debounce(handleClick,500));
+
+
+  // 3. Stack
+  class Stack {
+    constructor(){
+      this.stack = [];
+    }
+    push(e){
+      this.stack.push(e);
+    }
+    pop(){
+      return this.stack.pop();
+    }
+    size(){
+      return this.stack.length;
+    }
+  }
+
+  const stack = new Stack();
+  stack.push("Hi");
+  stack.push(11);
+  stack.push("cool");
+  let popData = stack.pop(); // cool
+  stack.size(); // 2
+</script>
+<body>
+  
+</body>
+</html>
